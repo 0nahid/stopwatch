@@ -35,15 +35,22 @@ export default function Controls(props: Props) {
     }
 
     const handleReset = () => {
-        if (!isRunning && isPaused) {
-            toast.error("Timer is not running");
-            return;
+        //    if is running then stop it and then reset it && if is paused then reset it
+        if ((isRunning && !isPaused) || (!isRunning && !isPaused)) {
+            setTimeInMiliSeconds(0);
+            clearInterval(intervalId);
+            setIsRunning(false);
+            setIsPaused(false);
+            toast.success("Timer Reset");
         }
-        toast.success("Timer Reset");
-        setTimeInMiliSeconds(0);
-        setIsRunning(false);
-        setIsPaused(false);
-        clearInterval(intervalId);
+        if (isRunning && isPaused) {
+            setTimeInMiliSeconds(0);
+            setIsRunning(false);
+            setIsPaused(false);
+            toast.success("Timer Reset");
+        }
+
+
     }
 
     return (
