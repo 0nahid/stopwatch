@@ -20,7 +20,7 @@ export default function Timer() {
                     </button>
                 </a>
             </div>
-            <main className="stopwatch-container">
+            <main className="stopwatch-container md:-mt-12">
                 <section className="timer-display mb-5">
                     <p className="text-4xl md:text-6xl" id="hour">{timerArray[0]}</p>
                     <span className="text-4xl md:text-6xl relative tracking-wide -mt-1">:</span>

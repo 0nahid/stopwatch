@@ -39,6 +39,7 @@ export default function Controls(props: Props) {
             toast.error("Timer is not running");
             return;
         }
+        toast.success("Timer Reset");
         setTimeInMiliSeconds(0);
         setIsRunning(false);
         setIsPaused(false);
