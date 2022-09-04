@@ -7,11 +7,11 @@ export default function Controls(props: Props) {
     const [intervalId, setIntervalId] = useState<number>(0);
 
     const handlePlayButton = (e: object) => {
-        //    set time function with milisecond
-        const id = window.setInterval(() => {
-            setTimeInMiliSeconds((time: number) => time + 10);
+        const intervalId = window.setInterval(() => {
+            setTimeInMiliSeconds((prevTime: number) => prevTime + 10);
         }, 10);
-        setIntervalId(id);
+        setIntervalId(intervalId);
+
     }
     const handleStopButton = () => {
         clearInterval(intervalId);

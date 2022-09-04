@@ -13,10 +13,12 @@ export default function Timer() {
     return (
 
         <div>
-            <div className="text-right   ">
-                <button className="rotate-45 ">
-                    <img className="h-10 w-10" src="https://img.icons8.com/ios-glyphs/452/github.png" alt="github" />
-                </button>
+            <div className="flex justify-end">
+                <a href="https://github.com/0nahid/stopwatch" target="_blank" rel="noreferrer" title="Stopwatch">
+                    <button className=" flex justify-center">
+                        <img className="h-10 md:h-16 w-10 md:w-16 rotate-45" src="https://img.icons8.com/ios-glyphs/452/github.png" alt="github" />
+                    </button>
+                </a>
             </div>
             <main className="stopwatch-container">
                 <section className="timer-display mb-5">
