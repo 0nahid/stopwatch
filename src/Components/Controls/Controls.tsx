@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 type Props = {
     setTimeInMiliSeconds: Function
 }
@@ -11,24 +12,33 @@ export default function Controls(props: Props) {
 
     const handlePlayButton = (e: object) => {
         if (isRunning && !isPaused) {
+            toast.error("Timer is already running");
             return;
         }
         setIsRunning(true);
         setIsPaused(false);
+        toast.success("Timer started");
         let id = window.setInterval(() => {
             setTimeInMiliSeconds((prev: number) => prev + 10);
         }, 10);
         setIntervalId(id);
-
-
     }
     const handleStopButton = () => {
+        if (!isRunning) {
+            toast.error("Timer is not running");
+            return;
+        }
         setIsRunning(false);
         setIsPaused(false);
+        toast.success("Timer Stopped");
         clearInterval(intervalId);
     }
 
     const handleReset = () => {
+        if (!isRunning && isPaused) {
+            toast.error("Timer is not running");
+            return;
+        }
         setTimeInMiliSeconds(0);
         setIsRunning(false);
         setIsPaused(false);
