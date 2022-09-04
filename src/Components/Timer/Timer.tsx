@@ -3,12 +3,13 @@ import Controls from "../Controls/Controls"
 import calculateTimer from "../helper/CalculateTimer"
 import './Timer.css'
 export default function Timer() {
-    const [timeInSecond, setTimeInSecond] = useState<number>(0)
+    const [timeInMiliSeconds, setTimeInMiliSeconds] = useState<number>(0)
     const [timerArray, setTimerArray] = useState<Array<number | string>>([])
     useEffect(() => {
-        let timeArray: Array<number | string> = calculateTimer(timeInSecond)
+        let timeArray: Array<number | string> = calculateTimer(timeInMiliSeconds)
+        console.log(timeArray);
         setTimerArray(timeArray)
-    }, [timeInSecond])
+    }, [timeInMiliSeconds])
     return (
 
         <main className="stopwatch-container">
@@ -18,8 +19,10 @@ export default function Timer() {
                 <p id="minute">{timerArray[1]}</p>
                 <span>:</span>
                 <p id="second">{timerArray[2]}</p>
+                <span>:</span>
+                <p id="second">{timerArray[3]}</p>
             </section>
-            <Controls setTimeInSecond={setTimeInSecond} />
+            <Controls setTimeInMiliSeconds={setTimeInMiliSeconds} />
         </main>
 
 

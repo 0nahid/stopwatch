@@ -1,12 +1,14 @@
-function calculateTimer(timeInSeconds: number): Array<number | string> {
-  const hour: number = Math.floor(timeInSeconds / 3600);
-  const minute: number = Math.floor((timeInSeconds - hour * 3600) / 60);
-  const second: number = timeInSeconds - hour * 3600 - minute * 60;
-  const nanoSecond = Math.floor((second - Math.floor(second)) * 1000);
-  const hourFormat: string = hour < 10 ? `0${hour}` : `${hour}`;
-  const minuteFormat: string = minute < 10 ? `0${minute}` : `${minute}`;
-  const secondFormat: string = second < 10 ? `0${second}` : `${second}`;
-  const nanoSecondFormat: string = nanoSecond < 10 ? `00${nanoSecond}` : nanoSecond < 100 ? `0${nanoSecond}` : `${nanoSecond}`;
-  return [hourFormat, minuteFormat, secondFormat,nanoSecondFormat];
+function calculateTimer(timeInMiliSeconds: number): Array<number | string> {
+  const hour = Math.floor(timeInMiliSeconds / 3600000);
+  const minute = Math.floor(timeInMiliSeconds / 60000);
+  const second = ((timeInMiliSeconds % 60000) / 1000).toFixed(0);
+  const milisecond = timeInMiliSeconds % 1000;
+  const hourString = hour < 10 ? `0${hour}` : hour;
+  const minuteString = minute < 10 ? `0${minute}` : minute;
+  const secondString = Number(second) < 10 ? `0${second}` : second;
+  const milisecondString = milisecond < 10 ? `00${milisecond}` : milisecond < 100 ? `0${milisecond}` : milisecond;
+  // show only 2 digits of milisecond
+  return [hourString,minuteString, secondString, milisecondString.toString().slice(0, 2)];
+  // return [minuteString, secondString, milisecondString];
 }
 export default calculateTimer;

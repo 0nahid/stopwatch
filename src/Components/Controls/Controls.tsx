@@ -1,27 +1,25 @@
 import { useState } from "react";
 type Props = {
-    setTimeInSecond: Function
+    setTimeInMiliSeconds: Function
 }
 export default function Controls(props: Props) {
-    const { setTimeInSecond } = props;
+    const { setTimeInMiliSeconds } = props;
     const [intervalId, setIntervalId] = useState<number>(0);
 
     const handlePlayButton = (e: object) => {
+        //    set time function with milisecond
         const id = window.setInterval(() => {
-            setTimeInSecond((prev: number) => prev + 1);
-        }
-            , 1000);
+            setTimeInMiliSeconds((time: number) => time + 10);
+        }, 10);
         setIntervalId(id);
-
-    };
-
+    }
     const handleStopButton = () => {
         clearInterval(intervalId);
     }
 
     const handleReset = () => {
         clearInterval(intervalId);
-        setTimeInSecond(0);
+        setTimeInMiliSeconds(0);
     }
 
     return (
