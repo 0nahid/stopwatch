@@ -7,7 +7,7 @@ export default function Timer() {
     const [timerArray, setTimerArray] = useState<Array<number | string>>([])
     useEffect(() => {
         let timeArray: Array<number | string> = calculateTimer(timeInMiliSeconds)
-        console.log(timeArray);
+        // console.log(timeArray);
         setTimerArray(timeArray)
     }, [timeInMiliSeconds])
     return (

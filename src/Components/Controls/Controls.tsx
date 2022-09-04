@@ -5,21 +5,34 @@ type Props = {
 export default function Controls(props: Props) {
     const { setTimeInMiliSeconds } = props;
     const [intervalId, setIntervalId] = useState<number>(0);
+    const [isRunning, setIsRunning] = useState<boolean>(false);
+    const [isPaused, setIsPaused] = useState<boolean>(false);
+
 
     const handlePlayButton = (e: object) => {
-        const intervalId = window.setInterval(() => {
-            setTimeInMiliSeconds((prevTime: number) => prevTime + 10);
+        if (isRunning && !isPaused) {
+            return;
+        }
+        setIsRunning(true);
+        setIsPaused(false);
+        let id = window.setInterval(() => {
+            setTimeInMiliSeconds((prev: number) => prev + 10);
         }, 10);
-        setIntervalId(intervalId);
+        setIntervalId(id);
+
 
     }
     const handleStopButton = () => {
+        setIsRunning(false);
+        setIsPaused(false);
         clearInterval(intervalId);
     }
 
     const handleReset = () => {
-        clearInterval(intervalId);
         setTimeInMiliSeconds(0);
+        setIsRunning(false);
+        setIsPaused(false);
+        clearInterval(intervalId);
     }
 
     return (
